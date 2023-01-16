@@ -4,7 +4,7 @@
 
 - The prototype layout from Figma be taken.
 
-- An open API was used to get the titles and descriptions of articles: https://spaceflightnewsapi.net/.
+- An open API was used to get the titles and descriptions of articles: https://spaceflightnewsapi.net/
 
 - Home page contains:
 
