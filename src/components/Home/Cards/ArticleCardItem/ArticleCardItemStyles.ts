@@ -30,7 +30,7 @@ export const dateStyle = {
 
 export const titleStyle = {
   height: 58,
-  border: "1px solid red",
+
   fontFamily: "Montserrat",
   fontWeight: 400,
   fontSize: 24,
@@ -43,7 +43,7 @@ export const titleStyle = {
 
 export const summaryStyle = {
   height: 96,
-  border: "1px solid red",
+
   fontFamily: "Montserrat",
   fontWeight: 400,
   fontSize: 16,

@@ -1,17 +1,18 @@
 import { FC } from "react";
 
-import { TextField, InputAdornment, Typography } from "@mui/material";
-
-import { textStyle, inputStyle } from "./FilterFormStyles";
+import { filterSelector } from "../../../redux/ArticleCards/articlesSelectors";
+import { setFilter } from "../../../redux/ArticleCards/articlesSlice";
 
 import {
   useAppDispatch,
   useAppSelector,
 } from "../../../services/hooks/reduxHooks";
 
-import { filterSelector } from "../../../redux/ArticleCards/articlesSelectors";
+import { TextField, InputAdornment, Typography } from "@mui/material";
+
 import { SearchIcon } from "../../../assets";
-import { setFilter } from "../../../redux/ArticleCards/articlesSlice";
+
+import { textStyle, inputStyle } from "./FilterFormStyles";
 
 const FilterForm: FC = () => {
   const dispath = useAppDispatch();

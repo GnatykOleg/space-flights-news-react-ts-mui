@@ -1,14 +1,16 @@
 import { FC } from "react";
 import { nanoid } from "@reduxjs/toolkit";
-
 import { useNavigate } from "react-router-dom";
-import { useAppSelector } from "../../../../services/hooks/reduxHooks";
-
-import { ArrowIcon, CalendarIcon } from "../../../../assets";
 
 import convertedDate from "../../../../services/hooks/convertedDate";
 
 import { IDataToMarkup } from "../../../../Interfaces/Interfaces";
+
+import { useAppSelector } from "../../../../services/hooks/reduxHooks";
+
+import { dataSelector } from "../../../../redux/ArticleCards/articlesSelectors";
+
+import { ArrowIcon, CalendarIcon } from "../../../../assets";
 
 import {
   Typography,
@@ -33,9 +35,10 @@ import {
 } from "./ArticleCardItemStyles";
 
 const ArticleCardItem: FC = () => {
-  const selector = useAppSelector((state) => state.data);
+  const data = useAppSelector(dataSelector);
   const navigate = useNavigate();
-  const markup = selector.map((article: IDataToMarkup) => {
+
+  const markup = data.map((article: IDataToMarkup) => {
     const shortDescription =
       article.summary.length > 100
         ? article.summary.slice(0, 100) + "..."
