@@ -17,11 +17,11 @@ import { textStyle, inputStyle } from "./FilterFormStyles";
 const FilterForm: FC = () => {
   const dispath = useAppDispatch();
 
+  const value = useAppSelector(filterSelector);
+
   const onChangeInput = (event: React.ChangeEvent<HTMLInputElement>): void => {
     dispath(setFilter(event.currentTarget.value));
   };
-
-  const value = useAppSelector(filterSelector);
 
   return (
     <>

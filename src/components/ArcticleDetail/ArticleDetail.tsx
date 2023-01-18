@@ -23,7 +23,7 @@ const ArticleDetail: FC = () => {
 
   const data = useAppSelector(dataSelector);
 
-  const detailInfo = data.find((article) => article.id === Number(articleId));
+  const detailInfo = data?.find(({ id }) => id === Number(articleId));
 
   useEffect(() => {
     if (!detailInfo) {
@@ -47,7 +47,7 @@ const ArticleDetail: FC = () => {
           <Typography component="h2" sx={titleStyle}>
             {detailInfo?.title}
           </Typography>
-          <Typography sx={descriptionStyle}>{detailInfo?.summary}</Typography>
+          <Typography sx={descriptionStyle}>{detailInfo?.summary} </Typography>
           <Button
             onClick={() => navigate("/")}
             sx={buttonStyle}

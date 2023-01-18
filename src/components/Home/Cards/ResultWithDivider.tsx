@@ -2,20 +2,9 @@ import { FC } from "react";
 
 import { Typography, Divider } from "@mui/material";
 
-import { useAppSelector } from "../../../services/hooks/reduxHooks";
-import {
-  dataSelector,
-  filterSelector,
-} from "../../../redux/ArticleCards/articlesSelectors";
+import { IDividerProps } from "../../../Interfaces/Interfaces";
 
-const ResultWithDivider: FC = () => {
-  const data = useAppSelector(dataSelector);
-  const filter = useAppSelector(filterSelector);
-
-  const resultCount = filter
-    ? `Results: ${data.length}`
-    : `All posts: ${data.length}`;
-
+const ResultWithDivider: FC<IDividerProps> = ({ postsLength }) => {
   const textStyle = {
     fontFamily: "Montserrat",
     fontWeight: 600,
@@ -27,7 +16,7 @@ const ResultWithDivider: FC = () => {
   };
   return (
     <>
-      <Typography sx={textStyle}>{resultCount}</Typography>
+      <Typography sx={textStyle}>Results: {postsLength}</Typography>
       <Divider sx={{ mb: "45px", borderColor: "#EAEAEA" }} />
     </>
   );
