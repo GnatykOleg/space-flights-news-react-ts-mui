@@ -1,11 +1,3 @@
-export interface IDataToMarkup {
-  imageUrl: string;
-  publishedAt: string;
-  title: string;
-  summary: string;
-  id: number;
-}
-
 export interface IDataFromBackend {
   id: number;
   featured: boolean;
@@ -32,6 +24,14 @@ export interface IDataFromBackend {
 export interface IArticlesState {
   data: IDataFromBackend[];
   loading: boolean;
-  error: string | null | undefined;
+  error: string | null;
   filter: string;
+}
+
+export interface ICardItemProps {
+  posts: IDataFromBackend[];
+}
+
+export interface IDividerProps {
+  postsLength: number;
 }

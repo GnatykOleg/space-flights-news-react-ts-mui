@@ -4,13 +4,15 @@ import { useNavigate } from "react-router-dom";
 
 import convertedDate from "../../../../services/hooks/convertedDate";
 
-import { IDataToMarkup } from "../../../../Interfaces/Interfaces";
+import { ICardItemProps } from "../../../../Interfaces/Interfaces";
 
 import { useAppSelector } from "../../../../services/hooks/reduxHooks";
 
-import { dataSelector } from "../../../../redux/ArticleCards/articlesSelectors";
+import { filterSelector } from "../../../../redux/ArticleCards/articlesSelectors";
 
 import { ArrowIcon, CalendarIcon } from "../../../../assets";
+
+import Highlighter from "react-highlight-words";
 
 import {
   Typography,
@@ -32,21 +34,19 @@ import {
   summaryStyle,
   buttonStyle,
   cardActionsStyle,
+  cardInfoStyle,
 } from "./ArticleCardItemStyles";
 
-const ArticleCardItem: FC = () => {
-  const data = useAppSelector(dataSelector);
+const ArticleCardItem: FC<ICardItemProps> = ({ posts }) => {
   const navigate = useNavigate();
 
-  const markup = data.map((article: IDataToMarkup) => {
+  const filter = useAppSelector(filterSelector);
+
+  const markup = posts.map(({ summary, publishedAt, title, imageUrl, id }) => {
     const shortDescription =
-      article.summary.length > 100
-        ? article.summary.slice(0, 100) + "..."
-        : article.summary;
+      summary.length > 100 ? summary.slice(0, 100) + "..." : summary;
 
-    const date = convertedDate(article.publishedAt);
-
-    const shortTitle = article.title.slice(0, 39) + "...";
+    const date = convertedDate(publishedAt);
 
     return (
       <Grid
@@ -61,28 +61,40 @@ const ArticleCardItem: FC = () => {
         <Card sx={cardStyle}>
           <CardMedia
             component="img"
-            alt={article.title}
+            alt={title}
             sx={{ height: 217 }}
-            image={article.imageUrl}
+            image={imageUrl}
           />
-          <CardContent sx={cardContentStyle}>
-            <Box sx={calendarBox}>
-              <CalendarIcon sx={{ width: 16 }} />
-              <Typography sx={dateStyle}>{date}</Typography>
-            </Box>
-            <Typography sx={titleStyle}>{shortTitle}</Typography>
-            <Typography sx={summaryStyle}>{shortDescription}</Typography>
-          </CardContent>
-          <CardActions sx={cardActionsStyle}>
-            <Button
-              onClick={() => navigate(`/article/${article.id}`)}
-              sx={buttonStyle}
-              variant="text"
-              endIcon={<ArrowIcon sx={{ width: 12 }} />}
-            >
-              Read more
-            </Button>
-          </CardActions>
+          <Box sx={cardInfoStyle}>
+            <CardContent sx={cardContentStyle}>
+              <Box sx={calendarBox}>
+                <CalendarIcon sx={{ width: 16 }} />
+                <Typography sx={dateStyle}>{date}</Typography>
+              </Box>
+              <Typography sx={titleStyle}>
+                <Highlighter
+                  searchWords={filter.split(" ")}
+                  textToHighlight={title}
+                />
+              </Typography>
+              <Typography sx={summaryStyle}>
+                <Highlighter
+                  searchWords={filter.split(" ")}
+                  textToHighlight={shortDescription}
+                />
+              </Typography>
+            </CardContent>
+            <CardActions sx={cardActionsStyle}>
+              <Button
+                onClick={() => navigate(`/article/${id}`)}
+                sx={buttonStyle}
+                variant="text"
+                endIcon={<ArrowIcon sx={{ width: 12 }} />}
+              >
+                Read more
+              </Button>
+            </CardActions>
+          </Box>
         </Card>
       </Grid>
     );

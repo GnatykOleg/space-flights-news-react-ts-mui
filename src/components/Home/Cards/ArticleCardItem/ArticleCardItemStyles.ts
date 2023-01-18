@@ -1,5 +1,5 @@
 export const cardStyle = {
-  minHeight: 530,
+  height: "100%",
   background: "#FFFFFF",
   border: "1px solid #EAEAEA",
   boxShadow: "0px 8px 24px rgba(0, 0, 0, 0.05)",
@@ -8,7 +8,6 @@ export const cardStyle = {
 
 export const cardContentStyle = {
   marginTop: "25px",
-  marginBottom: "auto",
   padding: "0 25px 0 25px",
 };
 
@@ -29,8 +28,6 @@ export const dateStyle = {
 };
 
 export const titleStyle = {
-  height: 58,
-
   fontFamily: "Montserrat",
   fontWeight: 400,
   fontSize: 24,
@@ -38,12 +35,9 @@ export const titleStyle = {
   lineHeight: 1.2,
   color: "#363636",
   marginBottom: "20px",
-  overflow: "hidden",
 };
 
 export const summaryStyle = {
-  height: 96,
-
   fontFamily: "Montserrat",
   fontWeight: 400,
   fontSize: 16,
@@ -63,7 +57,15 @@ export const buttonStyle = {
 };
 
 export const cardActionsStyle = {
-  padding: "0 25px 0 25px",
-  position: "absolute",
-  bottom: "19px",
+  padding: "0 25px 19px 17px",
+
+  marginTop: "14px",
+};
+
+export const cardInfoStyle = {
+  height: "calc(100% - 217px)",
+
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "space-between",
 };
